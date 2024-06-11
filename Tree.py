@@ -25,5 +25,3 @@ class Tree:
                 node.right = TreeNode(caminhao)
             else:
                 self._insert(caminhao, node.right)
-
-    # implementação dos outros métodos da Tree
