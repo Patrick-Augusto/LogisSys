@@ -27,6 +27,7 @@ def main():
         caminhao.adicionar_carga(carga)
         caminhao.gerar_codigo_barras()
         sistema.adicionar_caminhao(caminhao)
+     
 
     ordem = input("Você quer a ordem crescente ou decrescente? ")
     sistema.imprimir_caminhoes(ordem=ordem)

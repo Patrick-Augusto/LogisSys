@@ -3,22 +3,20 @@ from Caminhao import Caminhao
 
 class SistemaLogistico:
     def __init__(self):
-        self.caminhoes = []
+        self.caminhoes = Tree()
 
     def adicionar_caminhao(self, caminhao):
-        self.caminhoes.append(caminhao)
+        self.caminhoes.insert(caminhao)
 
-    def quicksort(self, caminhoes, chave):
-        if len(caminhoes) < 2:
-            return caminhoes
-        else:
-            pivot = caminhoes[0]
-            less = [i for i in caminhoes[1:] if getattr(i, chave) <= getattr(pivot, chave)]
-            greater = [i for i in caminhoes[1:] if getattr(i, chave) > getattr(pivot, chave)]
-            return self.quicksort(less, chave) + [pivot] + self.quicksort(greater, chave)
+    def inorder_traversal(self, node, caminhoes):
+        if node:
+            self.inorder_traversal(node.left, caminhoes)
+            caminhoes.append(node.value)
+            self.inorder_traversal(node.right, caminhoes)
+        return caminhoes
 
     def imprimir_caminhoes(self, ordem='crescente'):
-        caminhoes_ordenados = self.quicksort(self.caminhoes, chave='peso')
+        caminhoes_ordenados = self.inorder_traversal(self.caminhoes.root, [])
         if ordem == 'decrescente':
             caminhoes_ordenados = caminhoes_ordenados[::-1]
         for caminhao in caminhoes_ordenados:
